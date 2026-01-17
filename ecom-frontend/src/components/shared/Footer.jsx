@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { FaFacebook, FaInstagram, FaTwitter, FaLinkedin, FaEnvelope, FaPhone, FaMapMarkerAlt, FaPaperPlane } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import '../../assets/style/footer.scss';
 
 const Footer = () => {
   const [email, setEmail] = useState('');
@@ -16,59 +17,59 @@ const Footer = () => {
   };
 
   return (
-    <footer className="theme-bg-secondary theme-text-primary mt-16">
-      <div className="lg:px-14 sm:px-8 px-4 py-12">
-        <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-8">
-          
+    <footer className="footer">
+      <div className="footer__container">
+        <div className="footer__content">
+
           {/* Company Info */}
-          <div className="animate-fade-in">
-            <h3 className="text-xl font-bold mb-4 theme-text-primary">E-Shop</h3>
-            <p className="theme-text-secondary mb-4 text-sm leading-relaxed">
-              Your trusted online marketplace for quality products at unbeatable prices. 
+          <div className="footer__section">
+            <h3 className="footer__title footer__title--main">E-Shop</h3>
+            <p className="footer__description">
+              Your trusted online marketplace for quality products at unbeatable prices.
               Shop with confidence and enjoy fast, reliable delivery.
             </p>
-            <div className="flex space-x-4">
-              <a href="#" className="theme-text-secondary hover:text-blue-500 transition-colors duration-300 hover-scale">
+            <div className="footer__social-links">
+              <a href="#" className="footer__social-link footer__social-link--facebook">
                 <FaFacebook size={20} />
               </a>
-              <a href="#" className="theme-text-secondary hover:text-pink-500 transition-colors duration-300 hover-scale">
+              <a href="#" className="footer__social-link footer__social-link--instagram">
                 <FaInstagram size={20} />
               </a>
-              <a href="#" className="theme-text-secondary hover:text-blue-400 transition-colors duration-300 hover-scale">
+              <a href="#" className="footer__social-link footer__social-link--twitter">
                 <FaTwitter size={20} />
               </a>
-              <a href="#" className="theme-text-secondary hover:text-blue-600 transition-colors duration-300 hover-scale">
+              <a href="#" className="footer__social-link footer__social-link--linkedin">
                 <FaLinkedin size={20} />
               </a>
             </div>
           </div>
 
           {/* Quick Links */}
-          <div className="animate-slide-in-left">
-            <h3 className="text-lg font-semibold mb-4 theme-text-primary">Quick Links</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link to="/" className="theme-text-secondary hover:theme-text-primary transition-colors duration-300 text-sm hover-scale inline-block">
+          <div className="footer__section footer__section--left">
+            <h3 className="footer__title">Quick Links</h3>
+            <ul className="footer__links">
+              <li className="footer__link-item">
+                <Link to="/" className="footer__link">
                   Home
                 </Link>
               </li>
-              <li>
-                <Link to="/products" className="theme-text-secondary hover:theme-text-primary transition-colors duration-300 text-sm hover-scale inline-block">
+              <li className="footer__link-item">
+                <Link to="/products" className="footer__link">
                   Shop
                 </Link>
               </li>
-              <li>
-                <Link to="/about" className="theme-text-secondary hover:theme-text-primary transition-colors duration-300 text-sm hover-scale inline-block">
+              <li className="footer__link-item">
+                <Link to="/about" className="footer__link">
                   About Us
                 </Link>
               </li>
-              <li>
-                <Link to="/contact" className="theme-text-secondary hover:theme-text-primary transition-colors duration-300 text-sm hover-scale inline-block">
+              <li className="footer__link-item">
+                <Link to="/contact" className="footer__link">
                   Contact
                 </Link>
               </li>
-              <li>
-                <Link to="/cart" className="theme-text-secondary hover:theme-text-primary transition-colors duration-300 text-sm hover-scale inline-block">
+              <li className="footer__link-item">
+                <Link to="/cart" className="footer__link">
                   Cart
                 </Link>
               </li>
@@ -76,51 +77,51 @@ const Footer = () => {
           </div>
 
           {/* Contact Info */}
-          <div className="animate-slide-in-right">
-            <h3 className="text-lg font-semibold mb-4 theme-text-primary">Contact Info</h3>
-            <div className="space-y-3">
-              <div className="flex items-center space-x-3">
-                <FaMapMarkerAlt className="theme-text-secondary" />
-                <span className="theme-text-secondary text-sm">moda ,kutch ,gujrat(370155)</span>
+          <div className="footer__section footer__section--right">
+            <h3 className="footer__title">Contact Info</h3>
+            <div className="footer__contact-info">
+              <div className="footer__contact-item">
+                <FaMapMarkerAlt className="footer__contact-icon" />
+                <span className="footer__contact-text">moda, kutch, gujrat(370155)</span>
               </div>
-              <div className="flex items-center space-x-3">
-                <FaPhone className="theme-text-secondary" />
-                <span className="theme-text-secondary text-sm">+91 9512570683</span>
+              <div className="footer__contact-item">
+                <FaPhone className="footer__contact-icon" />
+                <span className="footer__contact-text">+91 9512570683</span>
               </div>
-              <div className="flex items-center space-x-3">
-                <FaEnvelope className="theme-text-secondary" />
-                <span className="theme-text-secondary text-sm">yashbhandva01@gmail.com</span>
+              <div className="footer__contact-item">
+                <FaEnvelope className="footer__contact-icon" />
+                <span className="footer__contact-text">yashbhandva01@gmail.com</span>
               </div>
             </div>
           </div>
 
           {/* Newsletter */}
-          <div className="animate-fade-in">
-            <h3 className="text-lg font-semibold mb-4 theme-text-primary">Newsletter</h3>
-            <p className="theme-text-secondary text-sm mb-4">
+          <div className="footer__section">
+            <h3 className="footer__title">Newsletter</h3>
+            <p className="footer__newsletter-text">
               Subscribe to get updates on new products and exclusive offers!
             </p>
-            <form onSubmit={handleNewsletterSubmit} className="space-y-3">
-              <div className="relative">
+            <form onSubmit={handleNewsletterSubmit} className="footer__newsletter-form">
+              <div className="footer__input-container">
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email"
-                  className="w-full px-4 py-2 rounded-lg theme-bg-primary theme-text-primary theme-border border focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300"
+                  className="footer__email-input"
                   required
                 />
               </div>
               <button
                 type="submit"
-                className="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition-all duration-300 flex items-center justify-center space-x-2 btn-animated micro-bounce"
+                className="footer__submit-button"
               >
-                <FaPaperPlane />
+                <FaPaperPlane className="footer__submit-icon" />
                 <span>{isSubscribed ? 'Subscribed!' : 'Subscribe'}</span>
               </button>
             </form>
             {isSubscribed && (
-              <p className="text-green-500 text-sm mt-2 animate-bounce-in">
+              <p className="footer__success-message">
                 Thank you for subscribing!
               </p>
             )}
@@ -128,19 +129,19 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t theme-border mt-8 pt-6">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p className="theme-text-secondary text-sm animate-fade-in">
+        <div className="footer__bottom-bar">
+          <div className="footer__bottom-content">
+            <p className="footer__copyright">
               © 2024 E-Shop. All rights reserved.
             </p>
-            <div className="flex space-x-6 animate-slide-in-right">
-              <Link to="#" className="theme-text-secondary hover:theme-text-primary text-sm transition-colors duration-300">
+            <div className="footer__bottom-links">
+              <Link to="#" className="footer__bottom-link">
                 Privacy Policy
               </Link>
-              <Link to="#" className="theme-text-secondary hover:theme-text-primary text-sm transition-colors duration-300">
+              <Link to="#" className="footer__bottom-link">
                 Terms of Service
               </Link>
-              <Link to="#" className="theme-text-secondary hover:theme-text-primary text-sm transition-colors duration-300">
+              <Link to="#" className="footer__bottom-link">
                 Support
               </Link>
             </div>
