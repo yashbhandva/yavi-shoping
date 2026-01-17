@@ -13,6 +13,7 @@ import useCategoryFilter from "../../../hooks/useCategoryFilter";
 import ErrorPage from "../../shared/ErrorPage";
 import { deleteCategoryDashboardAction } from "../../../store/actions";
 import { categoryTableColumns } from "../../helper/tableColumn";
+import '../../../assets/style/category.scss';
 
 const Category = () => {
   const [searchParams] = useSearchParams();
@@ -70,35 +71,49 @@ const Category = () => {
   if (errorMessage) return <ErrorPage message={errorMessage} />;
 
   return (
-    <div>
-      <div className="pt-6 pb-10 flex justify-end">
-        <button
-          onClick={() => setOpenModal(true)}
-          className="bg-custom-blue hover:bg-blue-800 text-white font-semibold py-2 px-4 flex items-center gap-2 rounded-md shadow-md transition-colors hover:text-slate-300 duration-300"
-        >
-          <FaThList className="text-xl" />
-          Add Category
-        </button>
+    <div className="category-page">
+      <div className="page-header">
+        <div className="header-title">
+          <h1 className="page-title">Categories</h1>
+          <p className="page-subtitle">Manage your product categories</p>
+        </div>
+        <div className="header-actions">
+          <button
+            onClick={() => setOpenModal(true)}
+            className="add-category-btn"
+            style={{ display: 'flex', opacity: 1, visibility: 'visible' }}
+          >
+            <FaThList className="btn-icon" />
+            Add Category
+          </button>
+        </div>
       </div>
-      {!emptyCategories && (
-        <h1 className="text-slate-800 text-3xl text-center font-bold pb-6 uppercase">
-          All Categories
-        </h1>
-      )}
 
       {categoryLoader ? (
         <Loader />
       ) : (
         <>
           {emptyCategories ? (
-            <div className="flex flex-col items-center justify-center text-gray-600 py-10">
-              <FaFolderOpen size={50} className="mb-3" />
-              <h2 className="text-2xl font-semibold">
+            <div className="empty-state">
+              <FaFolderOpen className="empty-icon" />
+              <h2 className="empty-title">
                 No Categories Created Yet
               </h2>
+              <p className="empty-text">
+                Get started by creating your first product category. Categories help organize your products for customers.
+              </p>
+              <div className="empty-action">
+                <button
+                  onClick={() => setOpenModal(true)}
+                  className="add-category-btn"
+                >
+                  <FaThList className="btn-icon" />
+                  Create Category
+                </button>
+              </div>
             </div>
           ) : (
-            <div className="max-w-fit mx-auto">
+            <div className="data-grid-container">
               <DataGrid
                 className="w-full"
                 rows={tableRecords}
