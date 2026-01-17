@@ -1,0 +1,611 @@
+// Category.scss
+
+.category-page {
+  padding: 2rem;
+  background: rgb(var(--background));
+  min-height: 100vh;
+
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgb(var(--border));
+
+    .header-title {
+      .page-title {
+        color: rgb(var(--foreground));
+        font-size: 2rem;
+        font-weight: 800;
+        margin-bottom: 0.5rem;
+      }
+
+      .page-subtitle {
+        color: rgb(var(--muted-foreground));
+        font-size: 1rem;
+      }
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+  }
+
+  // Action Buttons
+  .add-category-btn {
+    background: rgb(var(--primary));
+    color: rgb(var(--primary-foreground));
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: var(--radius);
+    box-shadow: 0 4px 6px -1px rgba(var(--primary), 0.2), 0 2px 4px -1px rgba(var(--primary), 0.1);
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+
+    // Ensure visibility
+    position: relative;
+    z-index: 10;
+    opacity: 1;
+    visibility: visible;
+
+    &:hover {
+      background: rgb(var(--accent-hover));
+      transform: translateY(-2px);
+      box-shadow: 0 10px 15px -3px rgba(var(--primary), 0.3), 0 4px 6px -2px rgba(var(--primary), 0.2);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+
+    &:disabled {
+      background: rgb(var(--muted));
+      color: rgb(var(--muted-foreground));
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .btn-icon {
+      font-size: 1.25rem;
+    }
+  }
+
+  .secondary-btn {
+    background: transparent;
+    color: rgb(var(--primary));
+    border: 1px solid rgb(var(--primary));
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    &:hover {
+      background: rgb(var(--primary));
+      color: rgb(var(--primary-foreground));
+    }
+  }
+
+  // Stats Cards
+  .stats-cards {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: 1024px) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .stat-card {
+      background: rgb(var(--card));
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      border-left: 4px solid rgb(var(--primary));
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      }
+
+      &.active {
+        border-left-color: rgb(16, 185, 129);
+      }
+
+      &.inactive {
+        border-left-color: rgb(var(--muted-foreground));
+      }
+
+      &.featured {
+        border-left-color: rgb(245, 158, 11);
+      }
+
+      .stat-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+
+        .stat-title {
+          color: rgb(var(--muted-foreground));
+          font-size: 0.875rem;
+          font-weight: 500;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+        }
+
+        .stat-icon {
+          font-size: 1.5rem;
+          color: rgb(var(--primary));
+        }
+      }
+
+      .stat-value {
+        font-size: 2rem;
+        font-weight: 700;
+        color: rgb(var(--foreground));
+        margin-bottom: 0.5rem;
+      }
+
+      .stat-change {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        font-size: 0.875rem;
+        font-weight: 500;
+
+        &.positive {
+          color: rgb(16, 185, 129);
+        }
+
+        &.negative {
+          color: rgb(var(--destructive));
+        }
+      }
+    }
+  }
+
+  // Empty State
+  .empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 4rem 2rem;
+    background: rgb(var(--card));
+    border-radius: var(--radius);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin: 2rem 0;
+
+    .empty-icon {
+      font-size: 4rem;
+      margin-bottom: 1.5rem;
+      color: rgb(var(--muted-foreground));
+      opacity: 0.5;
+    }
+
+    .empty-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: rgb(var(--foreground));
+      margin-bottom: 0.5rem;
+    }
+
+    .empty-text {
+      color: rgb(var(--muted-foreground));
+      font-size: 1rem;
+      max-width: 400px;
+      margin-bottom: 2rem;
+    }
+
+    .empty-action {
+      margin-top: 1rem;
+    }
+  }
+
+  // Data Grid Container
+  .data-grid-container {
+    background-color: rgb(var(--card));
+    border-radius: var(--radius);
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    border: 1px solid rgb(var(--border));
+
+    // MUI DataGrid Theme Overrides
+    .MuiDataGrid-root {
+      border: none;
+      color: rgb(var(--foreground));
+      font-family: inherit;
+
+      .MuiDataGrid-main {
+        border-radius: var(--radius);
+      }
+
+      .MuiDataGrid-columnHeaders {
+        background-color: rgb(var(--secondary));
+        border-bottom: 2px solid rgb(var(--border));
+        color: rgb(var(--foreground));
+
+        .MuiDataGrid-columnHeader {
+          &:focus {
+            outline: none;
+          }
+
+          .MuiDataGrid-columnHeaderTitle {
+            font-weight: 600;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+          }
+        }
+      }
+
+      .MuiDataGrid-cell {
+        border-bottom: 1px solid rgb(var(--border));
+        color: rgb(var(--foreground));
+
+        &:focus {
+          outline: none;
+        }
+
+        &.MuiDataGrid-cell--editing {
+          background-color: rgb(var(--background));
+        }
+      }
+
+      .MuiDataGrid-row {
+        transition: background-color 0.2s ease;
+
+        &:hover {
+          background-color: rgb(var(--secondary));
+        }
+
+        &.Mui-selected {
+          background-color: rgba(var(--primary), 0.1);
+
+          &:hover {
+            background-color: rgba(var(--primary), 0.15);
+          }
+        }
+      }
+
+      .MuiDataGrid-footerContainer {
+        border-top: 1px solid rgb(var(--border));
+        background-color: rgb(var(--secondary));
+      }
+
+      .MuiTablePagination-root {
+        color: rgb(var(--foreground));
+
+        .MuiTablePagination-selectIcon {
+          color: rgb(var(--foreground));
+        }
+      }
+
+      .MuiIconButton-root {
+        color: rgb(var(--foreground));
+
+        &:hover {
+          background-color: rgba(var(--foreground), 0.05);
+        }
+
+        &.Mui-disabled {
+          color: rgb(var(--muted-foreground));
+        }
+      }
+
+      .MuiCheckbox-root {
+        color: rgb(var(--primary));
+
+        &.Mui-checked {
+          color: rgb(var(--primary));
+        }
+      }
+
+      .MuiDataGrid-menuIcon {
+        button {
+          color: rgb(var(--foreground));
+        }
+      }
+
+      .MuiDataGrid-columnSeparator {
+        color: rgb(var(--border));
+      }
+
+      .MuiDataGrid-sortIcon {
+        color: rgb(var(--foreground));
+      }
+
+      .MuiDataGrid-toolbarContainer {
+        padding: 1rem;
+        background-color: rgb(var(--secondary));
+        border-bottom: 1px solid rgb(var(--border));
+
+        .MuiButton-root {
+          color: rgb(var(--primary));
+          text-transform: none;
+          font-weight: 500;
+
+          &:hover {
+            background-color: rgba(var(--primary), 0.1);
+          }
+        }
+
+        .MuiFormControl-root {
+          .MuiInputBase-root {
+            color: rgb(var(--foreground));
+            background-color: rgb(var(--background));
+
+            &::before {
+              border-bottom-color: rgb(var(--border));
+            }
+
+            &:hover::before {
+              border-bottom-color: rgb(var(--primary));
+            }
+          }
+        }
+      }
+
+      // Virtual Scroller
+      .MuiDataGrid-virtualScroller {
+        &::-webkit-scrollbar {
+          width: 8px;
+          height: 8px;
+        }
+
+        &::-webkit-scrollbar-track {
+          background: rgb(var(--background-secondary));
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background: rgb(var(--border));
+          border-radius: 4px;
+
+          &:hover {
+            background: rgb(var(--muted-foreground));
+          }
+        }
+      }
+    }
+
+    // Loading Overlay
+    .MuiDataGrid-overlay {
+      background-color: rgba(var(--background), 0.8);
+
+      .MuiDataGrid-overlayLoadingWrapper {
+        color: rgb(var(--primary));
+      }
+    }
+
+    // No Results Overlay
+    .MuiDataGrid-overlayNoResults {
+      background-color: rgb(var(--background));
+      color: rgb(var(--muted-foreground));
+    }
+  }
+
+  // Category Status Badges
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+
+    &.active {
+      background-color: rgba(16, 185, 129, 0.1);
+      color: rgb(16, 185, 129);
+    }
+
+    &.inactive {
+      background-color: rgba(var(--muted-foreground), 0.1);
+      color: rgb(var(--muted-foreground));
+    }
+
+    &.featured {
+      background-color: rgba(245, 158, 11, 0.1);
+      color: rgb(245, 158, 11);
+    }
+  }
+
+  // Action Buttons in Table
+  .action-buttons {
+    display: flex;
+    gap: 0.5rem;
+
+    .action-btn {
+      padding: 0.375rem;
+      border-radius: var(--radius);
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      color: rgb(var(--muted-foreground));
+
+      &:hover {
+        background-color: rgb(var(--secondary));
+        color: rgb(var(--foreground));
+      }
+
+      &.edit-btn:hover {
+        color: rgb(var(--primary));
+        background-color: rgba(var(--primary), 0.1);
+      }
+
+      &.delete-btn:hover {
+        color: rgb(var(--destructive));
+        background-color: rgba(var(--destructive), 0.1);
+      }
+
+      &.view-btn:hover {
+        color: rgb(16, 185, 129);
+        background-color: rgba(16, 185, 129, 0.1);
+      }
+    }
+  }
+
+  // Filter and Search Section
+  .filter-section {
+    background: rgb(var(--card));
+    padding: 1.5rem;
+    border-radius: var(--radius);
+    margin-bottom: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+
+    .filter-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+
+      h3 {
+        color: rgb(var(--foreground));
+        font-size: 1.125rem;
+        font-weight: 600;
+      }
+
+      .clear-filters {
+        color: rgb(var(--primary));
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 0.875rem;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    .filter-grid {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      gap: 1rem;
+
+      @media (min-width: 768px) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      @media (min-width: 1024px) {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    .filter-group {
+      label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: rgb(var(--muted-foreground));
+        font-size: 0.875rem;
+        font-weight: 500;
+      }
+
+      input,
+      select {
+        width: 100%;
+        padding: 0.625rem;
+        border-radius: var(--radius);
+        border: 1px solid rgb(var(--border));
+        background: rgb(var(--background));
+        color: rgb(var(--foreground));
+
+        &:focus {
+          outline: none;
+          border-color: rgb(var(--ring));
+          box-shadow: 0 0 0 3px rgba(var(--ring), 0.1);
+        }
+      }
+    }
+  }
+
+  // Dark Mode Support
+  &.dark {
+    .data-grid-container {
+      .MuiDataGrid-root {
+        .MuiDataGrid-columnHeaders {
+          background-color: rgb(var(--muted));
+        }
+
+        .MuiDataGrid-row:hover {
+          background-color: rgb(var(--muted));
+        }
+
+        .MuiDataGrid-toolbarContainer {
+          background-color: rgb(var(--muted));
+        }
+      }
+    }
+
+    .filter-section {
+      background: rgb(var(--card));
+    }
+
+    .stat-card {
+      background: rgb(var(--card));
+    }
+  }
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+  .category-page {
+    padding: 1rem;
+
+    .page-header {
+      flex-direction: column;
+      gap: 1rem;
+      align-items: flex-start;
+
+      .header-title {
+        width: 100%;
+      }
+
+      .header-actions {
+        width: 100%;
+        justify-content: space-between;
+      }
+    }
+
+    .filter-section .filter-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  .category-page {
+    .stats-cards {
+      grid-template-columns: 1fr;
+    }
+
+    .add-category-btn {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+}
