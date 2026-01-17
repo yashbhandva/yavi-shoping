@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useGSAPFadeIn, useGSAPSlideIn, useGSAPScale } from './animations/GSAPAnimations';
 import ThreeBackground from './animations/ThreeBackground';
+import '../assets/style/about.scss';
 
 const About = () => {
     const headerRef = useGSAPFadeIn();
@@ -134,7 +135,7 @@ const About = () => {
                         <div className="lg:w-1/3 text-center">
                             <div className="w-60 h-60 rounded-full mx-auto mb-6 overflow-hidden theme-shadow-hover transform hover:scale-105 transition-all duration-300">
                                 <img 
-                                    src="/images/ceo-yash.jpg" 
+                                    src="/images/yash.jpg"
                                     alt="Yash Bhandva - CEO" 
                                     className="w-full h-full object-cover"
                                     onError={(e) => {
