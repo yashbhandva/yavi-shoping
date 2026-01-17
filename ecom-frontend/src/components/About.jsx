@@ -26,10 +26,10 @@ const About = () => {
     const founderData = {
         name: "Yash Bhandva",
         title: "Founder & CEO",
-        bio: "Visionary entrepreneur building E-Shop from ground up. Passionate about creating exceptional e-commerce experiences.",
+        bio: "Visionary entrepreneur building yavi from ground up. Passionate about creating exceptional e-commerce experiences.",
         fullBio: [
-            "As the sole founder of E-Shop, I wear multiple hats - from product development to customer support, marketing to operations.",
-            "With a background in technology and business, I started E-Shop with a simple mission: to create a platform that genuinely cares about its customers.",
+            "As the sole founder of yavi, I wear multiple hats - from product development to customer support, marketing to operations.",
+            "With a background in technology and business, I started yavi with a simple mission: to create a platform that genuinely cares about its customers.",
             "Every feature you see, every product listed, and every customer interaction has been personally handled by me. This ensures quality control and authentic connection.",
             "I believe in hands-on entrepreneurship where the founder is deeply involved in every aspect of the business."
         ],
@@ -55,7 +55,7 @@ const About = () => {
     };
 
     const companyData = {
-        name: "E-Shop",
+        name: "yavi",
         founded: "2023",
         tagline: "Built with Passion, Run with Precision",
         mission: "To deliver exceptional e-commerce experiences through personal attention and technical excellence.",
@@ -168,15 +168,6 @@ const About = () => {
             {/* Background Effect */}
             <ThreeBackground />
 
-            {/* Navigation */}
-            <nav className="page-navigation">
-                <div className="container">
-                    <Link to="/" className="back-home">
-                        ← Back to Home
-                    </Link>
-                </div>
-            </nav>
-
             {/* Hero Section - Founder Focus */}
             <section className="founder-hero" ref={headerRef}>
                 <div className="container">
@@ -195,7 +186,7 @@ const About = () => {
                             </p>
                             <div className="hero-stats">
                                 <div className="stat-item">
-                                    <div className="stat-number">{stats.customs.toLocaleString()}+</div>
+                                    <div className="stat-number">{stats.customers.toLocaleString()}+</div>
                                     <div className="stat-label">Happy Customers</div>
                                 </div>
                                 <div className="stat-item">
@@ -247,19 +238,15 @@ const About = () => {
                     <div className="story-content">
                         <div className="story-text">
                             <h3 className="story-title">Meet Yash Bhandva</h3>
-                            <p className="story-paragraph">
-                                I'm the creator, developer, marketer, support agent, and everything in between at E-Shop.
-                                What started as a passion project has grown into a full-fledged e-commerce platform.
-                            </p>
-                            <p className="story-paragraph">
-                                As a solo founder, I believe in the power of individual determination.
-                                Every line of code, every product listing, and every customer interaction
-                                gets my personal attention and care.
-                            </p>
+                            {founderData.fullBio.map((paragraph, index) => (
+                                <p key={index} className="story-paragraph">
+                                    {paragraph}
+                                </p>
+                            ))}
                             <div className="founder-quote">
                                 <div className="quote-icon">💬</div>
                                 <p className="quote-text">
-                                    "When you buy from E-Shop, you're not just buying from a company -
+                                    "When you buy from yavi, you're not just buying from a company -
                                     you're supporting an individual's dream and dedication."
                                 </p>
                                 <div className="quote-author">— Yash Bhandva</div>
@@ -355,7 +342,7 @@ const About = () => {
                             Solo Founder Philosophy
                         </h2>
                         <p className="section-subtitle">
-                            Principles that guide every decision at E-Shop
+                            Principles that guide every decision at yavi
                         </p>
                     </div>
 
@@ -364,14 +351,17 @@ const About = () => {
                             <div
                                 className="value-card"
                                 key={index}
-                                style={{ '--value-color': value.color } as React.CSSProperties}
+                                style={{ borderTopColor: value.color }}
                             >
-                                <div className="value-icon-wrapper">
+                                <div className="value-icon-wrapper" style={{ backgroundColor: value.color }}>
                                     <span className="value-icon">{value.icon}</span>
                                 </div>
                                 <h4 className="value-title">{value.title}</h4>
                                 <p className="value-desc">{value.description}</p>
-                                <div className="value-example">
+                                <div className="value-example" style={{
+                                    backgroundColor: `${value.color}20`,
+                                    color: value.color
+                                }}>
                                     {index === 0 && "You chat directly with me"}
                                     {index === 1 && "Each product is personally verified"}
                                     {index === 2 && "Platform improves every week"}
@@ -431,6 +421,8 @@ const About = () => {
                             <a
                                 href="mailto:yash@eshop.com"
                                 className="contact-option email"
+                                target="_blank"
+                                rel="noopener noreferrer"
                             >
                                 <span className="option-icon">📧</span>
                                 <div className="option-content">
@@ -473,7 +465,7 @@ const About = () => {
                             Experience Personal E-Commerce
                         </h2>
                         <p className="cta-text">
-                            When you shop with E-Shop, you're not just another order number.
+                            When you shop with yavi, you're not just another order number.
                             You're supporting an individual's passion project and getting
                             personal attention that big corporations can't provide.
                         </p>
@@ -490,7 +482,7 @@ const About = () => {
                         <div className="founder-signature">
                             <div className="signature-line"></div>
                             <div className="signature-name">Yash Bhandva</div>
-                            <div className="signature-title">Founder, E-Shop</div>
+                            <div className="signature-title">Founder, yavi</div>
                         </div>
                     </div>
                 </div>
