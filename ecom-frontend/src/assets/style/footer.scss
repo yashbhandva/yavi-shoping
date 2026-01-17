@@ -1,0 +1,375 @@
+// Footer.scss
+
+.footer {
+  background-color: rgb(var(--background-secondary));
+  color: rgb(var(--foreground));
+  margin-top: 4rem;
+  transition: background-color 0.2s ease, color 0.2s ease;
+
+  // Container with responsive padding
+  &__container {
+    padding: 3rem 1rem;
+
+    @media (min-width: 640px) {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+
+    @media (min-width: 1024px) {
+      padding-left: 3.5rem;
+      padding-right: 3.5rem;
+    }
+  }
+
+  // Main content grid
+  &__content {
+    display: grid;
+    gap: 2rem;
+
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: 1024px) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  // Section styles
+  &__section {
+    animation: fade-in 0.5s ease-out;
+
+    &--left {
+      animation: slide-in-left 0.5s ease-out;
+    }
+
+    &--right {
+      animation: slide-in-right 0.5s ease-out;
+    }
+  }
+
+  // Titles
+  &__title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: rgb(var(--foreground));
+
+    &--main {
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+  }
+
+  // Company description
+  &__description {
+    color: rgb(var(--muted-foreground));
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+    line-height: 1.625;
+    transition: color 0.2s ease;
+  }
+
+  // Social links
+  &__social-links {
+    display: flex;
+    gap: 1rem;
+  }
+
+  &__social-link {
+    color: rgb(var(--muted-foreground));
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    &--facebook:hover {
+      color: #3b5998; // Facebook blue
+    }
+
+    &--instagram:hover {
+      color: #E4405F; // Instagram pink
+    }
+
+    &--twitter:hover {
+      color: #1DA1F2; // Twitter blue
+    }
+
+    &--linkedin:hover {
+      color: #0077B5; // LinkedIn blue
+    }
+  }
+
+  // Quick links
+  &__links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  &__link-item {
+    margin: 0;
+  }
+
+  &__link {
+    color: rgb(var(--muted-foreground));
+    font-size: 0.875rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+
+    &:hover {
+      color: rgb(var(--foreground));
+      transform: scale(1.05);
+    }
+  }
+
+  // Contact info
+  &__contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  &__contact-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  &__contact-icon {
+    color: rgb(var(--muted-foreground));
+    flex-shrink: 0;
+  }
+
+  &__contact-text {
+    color: rgb(var(--muted-foreground));
+    font-size: 0.875rem;
+    transition: color 0.2s ease;
+  }
+
+  // Newsletter
+  &__newsletter-text {
+    color: rgb(var(--muted-foreground));
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+    transition: color 0.2s ease;
+  }
+
+  &__newsletter-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  &__input-container {
+    position: relative;
+  }
+
+  &__email-input {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    background-color: rgb(var(--background));
+    color: rgb(var(--foreground));
+    border: 1px solid rgb(var(--border));
+    transition: all 0.3s ease;
+    font-size: 0.875rem;
+
+    &:focus {
+      outline: none;
+      border-color: rgb(var(--primary));
+      box-shadow: 0 0 0 2px rgba(var(--ring), 0.2);
+    }
+
+    &::placeholder {
+      color: rgb(var(--muted-foreground));
+    }
+  }
+
+  &__submit-button {
+    width: 100%;
+    background-color: rgb(var(--primary));
+    color: rgb(var(--primary-foreground));
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    border: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: rgb(var(--accent-hover));
+      animation: micro-bounce 0.3s ease;
+    }
+
+    &:active {
+      transform: scale(0.98);
+    }
+  }
+
+  &__submit-icon {
+    font-size: 0.875rem;
+  }
+
+  &__success-message {
+    color: #10B981; // Green-500
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+    animation: bounce-in 0.5s ease;
+  }
+
+  // Bottom bar
+  &__bottom-bar {
+    border-top: 1px solid rgb(var(--border));
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    transition: border-color 0.2s ease;
+  }
+
+  &__bottom-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+
+  &__copyright {
+    color: rgb(var(--muted-foreground));
+    font-size: 0.875rem;
+    animation: fade-in 0.5s ease-out;
+    transition: color 0.2s ease;
+  }
+
+  &__bottom-links {
+    display: flex;
+    gap: 1.5rem;
+    animation: slide-in-right 0.5s ease-out;
+  }
+
+  &__bottom-link {
+    color: rgb(var(--muted-foreground));
+    font-size: 0.875rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+
+    &:hover {
+      color: rgb(var(--foreground));
+    }
+  }
+
+  // Animations
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slide-in-left {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slide-in-right {
+    from {
+      opacity: 0;
+      transform: translateX(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes bounce-in {
+    0% {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes micro-bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-2px);
+    }
+  }
+
+  // Dark theme adjustments
+  .dark & {
+    background-color: rgb(var(--background));
+
+    &__description,
+    &__link,
+    &__contact-text,
+    &__newsletter-text,
+    &__copyright,
+    &__bottom-link {
+      color: rgb(var(--muted-foreground));
+    }
+
+    &__email-input {
+      background-color: rgb(var(--card));
+      color: rgb(var(--card-foreground));
+      border-color: rgb(var(--border));
+    }
+
+    &__link:hover,
+    &__bottom-link:hover {
+      color: rgb(var(--foreground));
+    }
+  }
+}
+
+// Additional responsive adjustments
+@media (max-width: 640px) {
+  .footer {
+    &__container {
+      padding: 2rem 0.75rem;
+    }
+
+    &__social-links {
+      justify-content: center;
+    }
+
+    &__bottom-links {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
+  }
+}
