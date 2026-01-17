@@ -1,0 +1,302 @@
+/* Anime-Style Keyframes */
+@keyframes animeSlideIn {
+  0% { 
+    opacity: 0; 
+    transform: translateX(-100px) scale(0.8) rotate(-5deg); 
+    filter: blur(5px);
+  }
+  60% { 
+    opacity: 0.8; 
+    transform: translateX(10px) scale(1.05) rotate(2deg); 
+    filter: blur(1px);
+  }
+  100% { 
+    opacity: 1; 
+    transform: translateX(0) scale(1) rotate(0deg); 
+    filter: blur(0);
+  }
+}
+
+@keyframes animePopIn {
+  0% { 
+    opacity: 0; 
+    transform: scale(0.3) rotate(-180deg); 
+    filter: brightness(2);
+  }
+  50% { 
+    opacity: 0.9; 
+    transform: scale(1.2) rotate(-10deg); 
+    filter: brightness(1.5);
+  }
+  100% { 
+    opacity: 1; 
+    transform: scale(1) rotate(0deg); 
+    filter: brightness(1);
+  }
+}
+
+@keyframes sparkleTrail {
+  0% { 
+    opacity: 0; 
+    transform: scale(0) rotate(0deg); 
+    box-shadow: 0 0 0 rgba(255, 215, 0, 0);
+  }
+  50% { 
+    opacity: 1; 
+    transform: scale(1.5) rotate(180deg); 
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+  }
+  100% { 
+    opacity: 0; 
+    transform: scale(0.5) rotate(360deg); 
+    box-shadow: 0 0 40px rgba(255, 215, 0, 0);
+  }
+}
+
+@keyframes magicalGlow {
+  0%, 100% { 
+    box-shadow: 0 0 10px rgba(138, 43, 226, 0.5), 
+                0 0 20px rgba(138, 43, 226, 0.3),
+                0 0 30px rgba(138, 43, 226, 0.1);
+  }
+  50% { 
+    box-shadow: 0 0 20px rgba(138, 43, 226, 0.8), 
+                0 0 40px rgba(138, 43, 226, 0.6),
+                0 0 60px rgba(138, 43, 226, 0.4);
+  }
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  14% { transform: scale(1.1); }
+  28% { transform: scale(1); }
+  42% { transform: scale(1.1); }
+  70% { transform: scale(1); }
+}
+
+@keyframes floatingSakura {
+  0% { 
+    transform: translateY(-10px) rotate(0deg); 
+    opacity: 0;
+  }
+  10% { 
+    opacity: 1;
+  }
+  90% { 
+    opacity: 1;
+  }
+  100% { 
+    transform: translateY(100vh) rotate(360deg); 
+    opacity: 0;
+  }
+}
+
+@keyframes energyPulse {
+  0% { 
+    transform: scale(1); 
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7);
+  }
+  70% { 
+    transform: scale(1.05); 
+    box-shadow: 0 0 0 20px rgba(59, 130, 246, 0);
+  }
+  100% { 
+    transform: scale(1); 
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+  }
+}
+
+@keyframes textGlow {
+  0%, 100% { 
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5),
+                 0 0 10px rgba(255, 255, 255, 0.3),
+                 0 0 15px rgba(255, 255, 255, 0.1);
+  }
+  50% { 
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
+                 0 0 20px rgba(255, 255, 255, 0.6),
+                 0 0 30px rgba(255, 255, 255, 0.4);
+  }
+}
+
+/* Anime-Style Classes */
+.anime-slide-in {
+  animation: animeSlideIn 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.anime-pop-in {
+  animation: animePopIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+.anime-sparkle-trail {
+  position: relative;
+}
+
+.anime-sparkle-trail::after {
+  content: '✨';
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  animation: sparkleTrail 2s ease-in-out infinite;
+}
+
+.anime-magical-glow {
+  animation: magicalGlow 3s ease-in-out infinite;
+}
+
+.anime-heartbeat {
+  animation: heartbeat 2s ease-in-out infinite;
+}
+
+.anime-energy-pulse {
+  animation: energyPulse 2s ease-in-out infinite;
+}
+
+.anime-text-glow {
+  animation: textGlow 2s ease-in-out infinite;
+}
+
+/* Particle Effects */
+.sakura-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.sakura-petal {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: radial-gradient(circle, #ffb3d9, #ff80cc);
+  border-radius: 50% 0 50% 0;
+  animation: floatingSakura 8s linear infinite;
+}
+
+/* 3D Anime Card Effects */
+.anime-card-3d {
+  transform-style: preserve-3d;
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.anime-card-3d:hover {
+  transform: perspective(1000px) rotateX(10deg) rotateY(-10deg) translateZ(50px) scale(1.05);
+  box-shadow: 
+    0 30px 60px -12px rgba(0, 0, 0, 0.25),
+    0 0 40px rgba(138, 43, 226, 0.3),
+    0 0 80px rgba(59, 130, 246, 0.2);
+}
+
+/* Anime Button Effects */
+.anime-btn {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(45deg, #667eea, #764ba2, #f093fb, #f5576c);
+  background-size: 400% 400%;
+  animation: gradientShift 4s ease infinite;
+  border: none;
+  border-radius: 25px;
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.anime-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: left 0.5s;
+}
+
+.anime-btn:hover::before {
+  left: 100%;
+}
+
+.anime-btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2), 0 0 30px rgba(138, 43, 226, 0.4);
+}
+
+.anime-btn:active {
+  transform: translateY(-1px) scale(1.02);
+}
+
+/* Anime Loading Effects */
+.anime-loading {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(138, 43, 226, 0.3);
+  border-radius: 50%;
+  border-top-color: #8a2be2;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Anime Notification Bubble */
+.anime-notification {
+  position: relative;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 20px;
+  padding: 15px 20px;
+  color: white;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  animation: animePopIn 0.6s ease-out;
+}
+
+.anime-notification::before {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 30px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid #764ba2;
+}
+
+/* Anime Page Transition */
+.anime-page-enter {
+  animation: animeSlideIn 0.8s ease-out forwards;
+}
+
+.anime-page-exit {
+  animation: animeSlideIn 0.6s ease-out reverse forwards;
+}
+
+/* Performance Optimizations */
+.anime-optimized {
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+/* Responsive Anime Effects */
+@media (max-width: 768px) {
+  .anime-card-3d:hover {
+    transform: perspective(1000px) rotateX(5deg) rotateY(-5deg) translateZ(20px) scale(1.02);
+  }
+  
+  .anime-btn:hover {
+    transform: translateY(-2px) scale(1.03);
+  }
+}

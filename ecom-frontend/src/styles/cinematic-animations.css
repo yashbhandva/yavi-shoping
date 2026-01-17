@@ -1,0 +1,367 @@
+/* Cinematic Anime-Style Animations */
+
+/* Natural Motion Curves */
+:root {
+  --anime-ease-in: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+  --anime-ease-out: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --anime-ease-in-out: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  --spring-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --elastic-out: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Particle System Effects */
+@keyframes sparkleExplosion {
+  0% {
+    transform: scale(0) rotate(0deg);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2) rotate(180deg);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(0) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes floatingParticle {
+  0% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100px) translateX(var(--random-x, 20px)) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes magicalGlow {
+  0%, 100% {
+    box-shadow: 
+      0 0 20px rgba(138, 43, 226, 0.3),
+      0 0 40px rgba(138, 43, 226, 0.2),
+      inset 0 0 20px rgba(255, 255, 255, 0.1);
+  }
+  50% {
+    box-shadow: 
+      0 0 40px rgba(138, 43, 226, 0.6),
+      0 0 80px rgba(138, 43, 226, 0.4),
+      inset 0 0 30px rgba(255, 255, 255, 0.2);
+  }
+}
+
+/* Cinematic Scene Transitions */
+@keyframes sceneSlideIn {
+  0% {
+    transform: translateX(-100%) scale(0.8);
+    opacity: 0;
+    filter: blur(10px);
+  }
+  60% {
+    transform: translateX(10%) scale(1.05);
+    opacity: 0.8;
+    filter: blur(2px);
+  }
+  100% {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+@keyframes heroicEntrance {
+  0% {
+    transform: translateY(50px) scale(0.8) rotateX(20deg);
+    opacity: 0;
+  }
+  30% {
+    transform: translateY(-10px) scale(1.1) rotateX(-5deg);
+    opacity: 0.7;
+  }
+  60% {
+    transform: translateY(5px) scale(0.95) rotateX(2deg);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(0) scale(1) rotateX(0deg);
+    opacity: 1;
+  }
+}
+
+/* 3D Depth Layers */
+@keyframes floatingLayer {
+  0%, 100% {
+    transform: translateY(0) translateZ(0);
+  }
+  50% {
+    transform: translateY(-15px) translateZ(10px);
+  }
+}
+
+@keyframes parallaxFloat {
+  0%, 100% {
+    transform: translateY(0) rotateY(0deg);
+  }
+  25% {
+    transform: translateY(-8px) rotateY(2deg);
+  }
+  75% {
+    transform: translateY(8px) rotateY(-2deg);
+  }
+}
+
+/* Character Animation Effects */
+@keyframes characterReaction {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+  25% {
+    transform: scale(1.2) rotate(-5deg);
+  }
+  50% {
+    transform: scale(0.9) rotate(3deg);
+  }
+  75% {
+    transform: scale(1.1) rotate(-2deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@keyframes excitementBounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  10% {
+    transform: translateY(-20px) scale(1.1);
+  }
+  40% {
+    transform: translateY(-15px) scale(1.05);
+  }
+  60% {
+    transform: translateY(-10px) scale(1.02);
+  }
+}
+
+/* Spark Trail Effects */
+@keyframes sparkTrail {
+  0% {
+    transform: translateX(0) translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(var(--trail-x, 100px)) translateY(var(--trail-y, -50px)) scale(0);
+    opacity: 0;
+  }
+}
+
+/* Cinematic Button Effects */
+@keyframes cinematicPress {
+  0% {
+    transform: scale(1) translateY(0);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  }
+  50% {
+    transform: scale(0.95) translateY(2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  }
+  100% {
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* Anime-Style Hover Effects */
+.anime-card-hover {
+  transition: all 0.6s var(--elastic-out);
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.anime-card-hover:hover {
+  transform: translateY(-15px) rotateX(5deg) rotateY(-5deg) scale(1.02);
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.15),
+    0 0 30px rgba(138, 43, 226, 0.3);
+  animation: magicalGlow 2s ease-in-out infinite;
+}
+
+/* Particle Container */
+.particle-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: radial-gradient(circle, #fff, #8a2be2);
+  border-radius: 50%;
+  animation: floatingParticle 3s ease-out infinite;
+}
+
+.particle:nth-child(1) { --random-x: 30px; animation-delay: 0s; }
+.particle:nth-child(2) { --random-x: -20px; animation-delay: 0.2s; }
+.particle:nth-child(3) { --random-x: 40px; animation-delay: 0.4s; }
+.particle:nth-child(4) { --random-x: -30px; animation-delay: 0.6s; }
+.particle:nth-child(5) { --random-x: 15px; animation-delay: 0.8s; }
+
+/* Sparkle Explosion Effect */
+.sparkle-explosion {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle, #fff, #ffd700);
+  border-radius: 50%;
+  animation: sparkleExplosion 0.8s ease-out;
+  pointer-events: none;
+}
+
+/* Cinematic Scene Classes */
+.scene-entrance {
+  animation: sceneSlideIn 1.2s var(--elastic-out) forwards;
+}
+
+.heroic-entrance {
+  animation: heroicEntrance 1.5s var(--spring-bounce) forwards;
+}
+
+.floating-layer {
+  animation: floatingLayer 4s ease-in-out infinite;
+}
+
+.parallax-element {
+  animation: parallaxFloat 6s ease-in-out infinite;
+}
+
+/* Character Reaction Classes */
+.character-excited {
+  animation: excitementBounce 1s ease-out;
+}
+
+.character-reaction {
+  animation: characterReaction 0.8s var(--spring-bounce);
+}
+
+/* Interactive Button Effects */
+.cinematic-button {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s var(--anime-ease-out);
+  transform-style: preserve-3d;
+}
+
+.cinematic-button:active {
+  animation: cinematicPress 0.3s ease-out;
+}
+
+.cinematic-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: left 0.6s ease-out;
+}
+
+.cinematic-button:hover::before {
+  left: 100%;
+}
+
+/* Spark Trail Effect */
+.spark-trail {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: radial-gradient(circle, #fff, #ff6b9d);
+  border-radius: 50%;
+  animation: sparkTrail 1.5s ease-out forwards;
+  pointer-events: none;
+}
+
+.spark-trail:nth-child(1) { --trail-x: 80px; --trail-y: -40px; animation-delay: 0s; }
+.spark-trail:nth-child(2) { --trail-x: 60px; --trail-y: -60px; animation-delay: 0.1s; }
+.spark-trail:nth-child(3) { --trail-x: 100px; --trail-y: -30px; animation-delay: 0.2s; }
+
+/* Staggered Grid Animation */
+.staggered-grid > * {
+  opacity: 0;
+  transform: translateY(30px) scale(0.9);
+  animation: heroicEntrance 1s var(--elastic-out) forwards;
+}
+
+.staggered-grid > *:nth-child(1) { animation-delay: 0.1s; }
+.staggered-grid > *:nth-child(2) { animation-delay: 0.2s; }
+.staggered-grid > *:nth-child(3) { animation-delay: 0.3s; }
+.staggered-grid > *:nth-child(4) { animation-delay: 0.4s; }
+.staggered-grid > *:nth-child(5) { animation-delay: 0.5s; }
+.staggered-grid > *:nth-child(6) { animation-delay: 0.6s; }
+.staggered-grid > *:nth-child(7) { animation-delay: 0.7s; }
+.staggered-grid > *:nth-child(8) { animation-delay: 0.8s; }
+
+/* Magical Glow Text */
+.magical-text {
+  background: linear-gradient(45deg, #ff6b9d, #c44569, #f8b500, #feca57);
+  background-size: 400% 400%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 3s ease infinite;
+  text-shadow: 0 0 30px rgba(255, 107, 157, 0.5);
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Immersive Depth Effect */
+.depth-layer-1 { transform: translateZ(10px); }
+.depth-layer-2 { transform: translateZ(20px); }
+.depth-layer-3 { transform: translateZ(30px); }
+
+/* Performance Optimizations */
+.anime-optimized {
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .anime-card-hover:hover {
+    transform: translateY(-8px) scale(1.01);
+  }
+  
+  .staggered-grid > * {
+    animation-duration: 0.8s;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .anime-card-hover,
+  .cinematic-button,
+  .floating-layer,
+  .parallax-element {
+    animation: none;
+    transition: none;
+  }
+}

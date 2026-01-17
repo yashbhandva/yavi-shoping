@@ -1,0 +1,1 @@
+ALTER TABLE messages ADD COLUMN subject VARCHAR(200) NOT NULL DEFAULT 'General Inquiry';

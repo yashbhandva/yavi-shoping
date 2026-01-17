@@ -1,0 +1,15 @@
+/* Swiper Custom Styles */
+.swiper-button-next:after, 
+.swiper-button-prev:after {
+    font-size: 2rem;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.swiper-pagination-bullet-active {
+    background: white !important;
+    transform: scale(1.2);
+}
+
+.swiper-pagination-bullet {
+    transition: all 0.3s ease;
+}

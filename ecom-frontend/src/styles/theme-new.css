@@ -1,0 +1,157 @@
+/* Theme Variables */
+:root {
+  /* Light Mode */
+  --bg-primary: #F9FAFB;
+  --bg-secondary: #F3F4F6;
+  --bg-card: #FFFFFF;
+  --text-primary: #111827;
+  --text-secondary: #374151;
+  --text-muted: #6B7280;
+  --border-color: #E5E7EB;
+  --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  --shadow-hover: 0 10px 25px rgba(0, 0, 0, 0.15);
+  --accent-primary: #3B82F6;
+  --accent-hover: #2563EB;
+  --success: #10B981;
+  --warning: #F59E0B;
+  --error: #EF4444;
+}
+
+[data-theme="dark"] {
+  /* Dark Mode */
+  --bg-primary: #0F172A;
+  --bg-secondary: #1E293B;
+  --bg-card: #334155;
+  --text-primary: #F9FAFB;
+  --text-secondary: #E2E8F0;
+  --text-muted: #CBD5E1;
+  --border-color: #475569;
+  --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3);
+  --shadow-hover: 0 10px 25px rgba(0, 0, 0, 0.4);
+  --accent-primary: #06B6D4;
+  --accent-hover: #0891B2;
+  --success: #34D399;
+  --warning: #FBBF24;
+  --error: #F87171;
+}
+
+[data-theme="minimalist"] {
+  /* Minimalist Mode - Light Variant */
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #F9FAFB;
+  --bg-card: #FFFFFF;
+  --text-primary: #9CA3AF;
+  --text-secondary: #9CA3AF;
+  --text-muted: #D1D5DB;
+  --border-color: #F3F4F6;
+  --shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --accent-primary: #8B5CF6;
+  --accent-hover: #7C3AED;
+  --success: #10B981;
+  --warning: #F59E0B;
+  --error: #EF4444;
+}
+
+[data-theme="minimalist"][data-minimalist-variant="dark"] {
+  /* Minimalist Mode - Dark Variant */
+  --bg-primary: #111827;
+  --bg-secondary: #1F2937;
+  --bg-card: #374151;
+  --text-primary: #9CA3AF;
+  --text-secondary: #9CA3AF;
+  --text-muted: #D1D5DB;
+  --border-color: #4B5563;
+  --shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+  --shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --accent-primary: #8B5CF6;
+  --accent-hover: #7C3AED;
+  --success: #34D399;
+  --warning: #FBBF24;
+  --error: #F87171;
+}
+
+/* Smooth Theme Transitions - No Flicker */
+*,
+*::before,
+*::after {
+  transition: 
+    background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Prevent flash during theme switch */
+html {
+  color-scheme: light dark;
+}
+
+[data-theme] {
+  color-scheme: normal;
+}
+
+/* Theme Classes */
+.theme-bg-primary {
+  background-color: var(--bg-primary);
+}
+
+.theme-bg-secondary {
+  background-color: var(--bg-secondary);
+}
+
+.theme-bg-card {
+  background-color: var(--bg-card);
+}
+
+.theme-text-primary {
+  color: var(--text-primary);
+}
+
+.theme-text-secondary {
+  color: var(--text-secondary);
+}
+
+.theme-text-muted {
+  color: var(--text-muted);
+}
+
+.theme-border {
+  border-color: var(--border-color);
+}
+
+.theme-shadow {
+  box-shadow: var(--shadow);
+}
+
+.theme-shadow-hover:hover {
+  box-shadow: var(--shadow-hover);
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+  position: relative;
+  width: 60px;
+  height: 30px;
+  background: var(--bg-secondary);
+  border-radius: 15px;
+  border: 2px solid var(--border-color);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.theme-toggle::before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 22px;
+  height: 22px;
+  background: var(--accent-primary);
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+[data-theme="dark"] .theme-toggle::before {
+  transform: translateX(28px);
+}
