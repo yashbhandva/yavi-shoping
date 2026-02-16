@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './App.css'
 import Products from './components/products/Products'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
 import Home from './components/home/Home'
 import Navbar from './components/shared/Navbar'
 import Footer from './components/shared/Footer'
@@ -23,44 +23,53 @@ import Orders from './components/admin/orders/Orders'
 import Messages from './components/admin/messages/Messages'
 import ThemeDemo from './components/ThemeDemo'
 
+const AppContent = () => {
+  const location = useLocation();
+  const isDashboard = location.pathname.startsWith('/admin');
+
+  return (
+    <>
+      <Navbar />
+      <Routes>
+        <Route path='/' element={ <Home />}/>
+        <Route path='/products' element={ <Products />}/>
+        <Route path='/about' element={ <About />}/>
+        <Route path='/contact' element={ <Contact />}/>
+        <Route path='/cart' element={ <Cart />}/>
+        <Route path='/theme-demo' element={ <ThemeDemo />}/>
+      
+        <Route path='/' element={<PrivateRoute />}>
+          <Route path='/checkout' element={ <Checkout />}/>
+          <Route path='/order-confirm' element={ <PaymentConfirmation />}/>
+        </Route>
+
+        <Route path='/' element={<PrivateRoute publicPage />}>
+          <Route path='/login' element={ <LogIn />}/>
+          <Route path='/register' element={ <Register />}/>
+        </Route>
+
+         <Route path='/' element={<PrivateRoute adminOnly />}>
+          <Route path='/admin' element={ <AdminLayout />}>
+            <Route path='' element={<Dashboard />} />
+            <Route path='products' element={<AdminProducts />} />
+            <Route path='sellers' element={<Sellers />} />
+            <Route path='orders' element={<Orders />} />
+            <Route path='categories' element={<Category />} />
+            <Route path='messages' element={<Messages />} />
+          </Route>
+        </Route>
+      </Routes>
+      {!isDashboard && <Footer />}
+      <Toaster position='bottom-center'/>
+    </>
+  );
+};
+
 function App() {
   return (
-    <React.Fragment>
-      <Router>
-        <Navbar />
-        <Routes>
-          <Route path='/' element={ <Home />}/>
-          <Route path='/products' element={ <Products />}/>
-          <Route path='/about' element={ <About />}/>
-          <Route path='/contact' element={ <Contact />}/>
-          <Route path='/cart' element={ <Cart />}/>
-          <Route path='/theme-demo' element={ <ThemeDemo />}/>
-        
-          <Route path='/' element={<PrivateRoute />}>
-            <Route path='/checkout' element={ <Checkout />}/>
-            <Route path='/order-confirm' element={ <PaymentConfirmation />}/>
-          </Route>
-
-          <Route path='/' element={<PrivateRoute publicPage />}>
-            <Route path='/login' element={ <LogIn />}/>
-            <Route path='/register' element={ <Register />}/>
-          </Route>
-
-           <Route path='/' element={<PrivateRoute adminOnly />}>
-            <Route path='/admin' element={ <AdminLayout />}>
-              <Route path='' element={<Dashboard />} />
-              <Route path='products' element={<AdminProducts />} />
-              <Route path='sellers' element={<Sellers />} />
-              <Route path='orders' element={<Orders />} />
-              <Route path='categories' element={<Category />} />
-              <Route path='messages' element={<Messages />} />
-            </Route>
-          </Route>
-        </Routes>
-        <Footer />
-      </Router>
-      <Toaster position='bottom-center'/>
-    </React.Fragment>
+    <Router>
+      <AppContent />
+    </Router>
   )
 }
 
