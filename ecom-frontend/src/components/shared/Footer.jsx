@@ -1,11 +1,18 @@
-import { useState } from 'react';
-import { FaFacebook, FaInstagram, FaTwitter, FaLinkedin, FaEnvelope, FaPhone, FaMapMarkerAlt, FaPaperPlane } from 'react-icons/fa';
+import { useState, useEffect } from 'react';
+import { FaFacebook, FaInstagram, FaTwitter, FaLinkedin, FaEnvelope, FaPhone, FaMapMarkerAlt, FaPaperPlane, FaArrowUp } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import '../../assets/style/footer.scss';
 
 const Footer = () => {
   const [email, setEmail] = useState('');
   const [isSubscribed, setIsSubscribed] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setShowScrollTop(window.scrollY > 300);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const handleNewsletterSubmit = (e) => {
     e.preventDefault();
@@ -16,11 +23,35 @@ const Footer = () => {
     }
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const quickLinks = [
+    { path: '/', label: 'Home' },
+    { path: '/products', label: 'Shop' },
+    { path: '/about', label: 'About Us' },
+    { path: '/contact', label: 'Contact' },
+    { path: '/cart', label: 'Cart' },
+  ];
+
+  const socialLinks = [
+    { icon: FaFacebook, href: '#', className: 'facebook', label: 'Facebook' },
+    { icon: FaInstagram, href: '#', className: 'instagram', label: 'Instagram' },
+    { icon: FaTwitter, href: '#', className: 'twitter', label: 'Twitter' },
+    { icon: FaLinkedin, href: '#', className: 'linkedin', label: 'LinkedIn' },
+  ];
+
+  const contactInfo = [
+    { icon: FaMapMarkerAlt, text: 'moda, kutch, gujrat(370155)' },
+    { icon: FaPhone, text: '+91 9512570683' },
+    { icon: FaEnvelope, text: 'yashbhandva01@gmail.com' },
+  ];
+
   return (
     <footer className="footer">
       <div className="footer__container">
         <div className="footer__content">
-
           {/* Company Info */}
           <div className="footer__section">
             <h3 className="footer__title footer__title--main">E-Shop</h3>
@@ -29,18 +60,16 @@ const Footer = () => {
               Shop with confidence and enjoy fast, reliable delivery.
             </p>
             <div className="footer__social-links">
-              <a href="#" className="footer__social-link footer__social-link--facebook">
-                <FaFacebook size={20} />
-              </a>
-              <a href="#" className="footer__social-link footer__social-link--instagram">
-                <FaInstagram size={20} />
-              </a>
-              <a href="#" className="footer__social-link footer__social-link--twitter">
-                <FaTwitter size={20} />
-              </a>
-              <a href="#" className="footer__social-link footer__social-link--linkedin">
-                <FaLinkedin size={20} />
-              </a>
+              {socialLinks.map(({ icon: Icon, href, className, label }) => (
+                <a
+                  key={className}
+                  href={href}
+                  className={`footer__social-link footer__social-link--${className}`}
+                  aria-label={label}
+                >
+                  <Icon size={20} />
+                </a>
+              ))}
             </div>
           </div>
 
@@ -48,31 +77,13 @@ const Footer = () => {
           <div className="footer__section footer__section--left">
             <h3 className="footer__title">Quick Links</h3>
             <ul className="footer__links">
-              <li className="footer__link-item">
-                <Link to="/" className="footer__link">
-                  Home
-                </Link>
-              </li>
-              <li className="footer__link-item">
-                <Link to="/products" className="footer__link">
-                  Shop
-                </Link>
-              </li>
-              <li className="footer__link-item">
-                <Link to="/about" className="footer__link">
-                  About Us
-                </Link>
-              </li>
-              <li className="footer__link-item">
-                <Link to="/contact" className="footer__link">
-                  Contact
-                </Link>
-              </li>
-              <li className="footer__link-item">
-                <Link to="/cart" className="footer__link">
-                  Cart
-                </Link>
-              </li>
+              {quickLinks.map(({ path, label }) => (
+                <li key={path} className="footer__link-item">
+                  <Link to={path} className="footer__link">
+                    {label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -80,18 +91,12 @@ const Footer = () => {
           <div className="footer__section footer__section--right">
             <h3 className="footer__title">Contact Info</h3>
             <div className="footer__contact-info">
-              <div className="footer__contact-item">
-                <FaMapMarkerAlt className="footer__contact-icon" />
-                <span className="footer__contact-text">moda, kutch, gujrat(370155)</span>
-              </div>
-              <div className="footer__contact-item">
-                <FaPhone className="footer__contact-icon" />
-                <span className="footer__contact-text">+91 9512570683</span>
-              </div>
-              <div className="footer__contact-item">
-                <FaEnvelope className="footer__contact-icon" />
-                <span className="footer__contact-text">yashbhandva01@gmail.com</span>
-              </div>
+              {contactInfo.map(({ icon: Icon, text }, index) => (
+                <div key={index} className="footer__contact-item">
+                  <Icon className="footer__contact-icon" />
+                  <span className="footer__contact-text">{text}</span>
+                </div>
+              ))}
             </div>
           </div>
 
@@ -112,17 +117,14 @@ const Footer = () => {
                   required
                 />
               </div>
-              <button
-                type="submit"
-                className="footer__submit-button"
-              >
+              <button type="submit" className="footer__submit-button">
                 <FaPaperPlane className="footer__submit-icon" />
                 <span>{isSubscribed ? 'Subscribed!' : 'Subscribe'}</span>
               </button>
             </form>
             {isSubscribed && (
               <p className="footer__success-message">
-                Thank you for subscribing!
+                ✓ Thank you for subscribing!
               </p>
             )}
           </div>
@@ -132,22 +134,27 @@ const Footer = () => {
         <div className="footer__bottom-bar">
           <div className="footer__bottom-content">
             <p className="footer__copyright">
-              © 2024 E-Shop. All rights reserved.
+              © {new Date().getFullYear()} E-Shop. All rights reserved.
             </p>
             <div className="footer__bottom-links">
-              <Link to="#" className="footer__bottom-link">
-                Privacy Policy
-              </Link>
-              <Link to="#" className="footer__bottom-link">
-                Terms of Service
-              </Link>
-              <Link to="#" className="footer__bottom-link">
-                Support
-              </Link>
+              <Link to="#" className="footer__bottom-link">Privacy Policy</Link>
+              <Link to="#" className="footer__bottom-link">Terms of Service</Link>
+              <Link to="#" className="footer__bottom-link">Support</Link>
             </div>
           </div>
         </div>
       </div>
+
+      {/* Scroll to Top Button */}
+      {showScrollTop && (
+        <button
+          onClick={scrollToTop}
+          className="footer__scroll-top"
+          aria-label="Scroll to top"
+        >
+          <FaArrowUp />
+        </button>
+      )}
     </footer>
   );
 };
