@@ -9,4 +9,21 @@ const api = axios.create({
 
 console.log('API Base URL:', `${backendUrl}/api`);
 
+// Add request interceptor to include JWT token from localStorage
+api.interceptors.request.use(
+    (config) => {
+        const auth = localStorage.getItem('auth');
+        if (auth) {
+            const user = JSON.parse(auth);
+            if (user?.jwtToken) {
+                config.headers.Authorization = `Bearer ${user.jwtToken}`;
+            }
+        }
+        return config;
+    },
+    (error) => {
+        return Promise.reject(error);
+    }
+);
+
 export default api;
