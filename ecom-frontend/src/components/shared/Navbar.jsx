@@ -1,5 +1,5 @@
 import { Badge } from "@mui/material";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FaShoppingCart, FaSignInAlt } from "react-icons/fa";
 import { IoIosMenu } from "react-icons/io";
 import { RxCross2 } from "react-icons/rx";
@@ -12,79 +12,67 @@ import '../../assets/style/navbar.scss';
 const Navbar = () => {
     const path = useLocation().pathname;
     const [navbarOpen, setNavbarOpen] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
     const { cart } = useSelector((state) => state.carts);
     const { user } = useSelector((state) => state.auth);
 
+    useEffect(() => {
+        const handleScroll = () => setScrolled(window.scrollY > 20);
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
+    useEffect(() => {
+        if (navbarOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'unset';
+        }
+    }, [navbarOpen]);
+
+    const navItems = [
+        { path: "/", label: "Home" },
+        { path: "/products", label: "Products" },
+        { path: "/about", label: "About" },
+        { path: "/contact", label: "Contact" },
+    ];
+
     return (
-        <div className="navbar-container">
+        <div className={`navbar-container ${scrolled ? 'scrolled' : ''}`}>
             <div className="navbar-inner">
                 <Link to="/" className="navbar-logo">
-                    {/* Logo with image */}
                     <div className="logo-image-wrapper">
                         <img
                             src="/images/logo.png"
                             alt="E-Shop Logo"
                             className="logo-image"
                             onError={(e) => {
-                                // Fallback if logo doesn't exist
                                 e.target.style.display = 'none';
                                 const fallback = e.target.nextElementSibling;
                                 if (fallback) fallback.style.display = 'flex';
                             }}
                         />
-                        {/* Fallback text logo */}
                         <div className="logo-fallback">
                             <span className="logo-text">E-Shop</span>
                         </div>
                     </div>
                 </Link>
 
-                {/* Rest of the code remains same */}
                 <ul className={`navbar-menu ${navbarOpen ? "navbar-menu-open" : ""}`}>
-                    {/* ... rest of menu items same as before ... */}
-
-                    <li className="nav-item">
-                       <Link
-                            className={`nav-link ${path === "/" ? "nav-link-active" : ""}`}
-                            to="/"
-                            onClick={() => setNavbarOpen(false)}
-                        >
-                            Home
-                       </Link>
-                    </li>
-
-                    <li className="nav-item">
-                       <Link
-                            className={`nav-link ${path === "/products" ? "nav-link-active" : ""}`}
-                            to="/products"
-                            onClick={() => setNavbarOpen(false)}
-                        >
-                            Products
-                       </Link>
-                    </li>
-
-                    <li className="nav-item">
-                       <Link
-                            className={`nav-link ${path === "/about" ? "nav-link-active" : ""}`}
-                            to="/about"
-                            onClick={() => setNavbarOpen(false)}
-                        >
-                            About
-                       </Link>
-                    </li>
-
-                    <li className="nav-item">
-                       <Link
-                            className={`nav-link ${path === "/contact" ? "nav-link-active" : ""}`}
-                            to="/contact"
-                            onClick={() => setNavbarOpen(false)}
-                        >
-                            Contact
-                       </Link>
-                    </li>
+                    {navItems.map((item) => (
+                        <li key={item.path} className="nav-item">
+                            <Link
+                                className={`nav-link ${path === item.path ? "nav-link-active" : ""}`}
+                                to={item.path}
+                                onClick={() => setNavbarOpen(false)}
+                            >
+                                {item.label}
+                            </Link>
+                        </li>
+                    ))}
 
                     <li className="nav-item cart-item">
-                       <Link
+                        <Link
                             className="nav-link cart-link"
                             to="/cart"
                             onClick={() => setNavbarOpen(false)}
@@ -98,7 +86,7 @@ const Navbar = () => {
                             >
                                 <FaShoppingCart className="cart-icon" />
                             </Badge>
-                       </Link>
+                        </Link>
                     </li>
 
                     <li className="nav-item">
@@ -111,14 +99,14 @@ const Navbar = () => {
                         </li>
                     ) : (
                         <li className="nav-item">
-                           <Link
+                            <Link
                                 className="login-button"
                                 to="/login"
                                 onClick={() => setNavbarOpen(false)}
                             >
                                 <FaSignInAlt className="login-icon" />
                                 <span>Login</span>
-                           </Link>
+                            </Link>
                         </li>
                     )}
                 </ul>
@@ -127,6 +115,7 @@ const Navbar = () => {
                     className="mobile-toggle"
                     onClick={() => setNavbarOpen(!navbarOpen)}
                     aria-label={navbarOpen ? "Close menu" : "Open menu"}
+                    aria-expanded={navbarOpen}
                 >
                     {navbarOpen ? (
                         <RxCross2 className="toggle-icon" />
